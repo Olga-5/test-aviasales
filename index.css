@@ -1,0 +1,120 @@
+*,
+*::after,
+*::before {
+  box-sizing: border-box;
+}
+
+p {
+  margin: 0;
+}
+
+a {
+  text-decoration: none;
+}
+
+img {
+  height: 100%;
+}
+
+body {
+  min-width: 960px;
+  background-color: #F3F7FA;
+  padding: 0;
+  margin: 0;
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 600;
+}
+
+.btn {
+  background-color: #2196F3;
+  color: #fff;
+  font-size: 12px;
+  line-height: 20px;
+  border-radius: 5px;
+  padding: 0;
+  margin: 0;
+  border: 0;
+  outline: 0;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+.btn:hover {
+  opacity: 0.6;
+}
+
+.container {
+  width: 960px;
+  margin: 0 auto;
+  padding: 50px 0;
+  display: flex;
+  justify-content: center;
+}
+
+.column {
+  margin: 0 10px;
+};
+
+.left-column {
+  width: 232px;
+}
+
+.right-column {
+  width: 502px;
+}
+
+.ticket-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.ticket-item {
+  background-color: #fff;
+  margin-bottom: 20px;
+  padding: 20px 20px 10px;
+  box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 5px;
+}
+
+.ticket-item-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.ticket-header-price {
+  color: #2196F3;
+  font-size: 24px;
+  line-height: 24px;
+}
+
+.ticket-header-logo {
+  width: 110px;
+  height: 36px;
+}
+
+.ticket-item-content {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.content-title {
+  font-size: 12px;
+  line-height: 18px;
+  color: #A0B0B9;
+  text-transform: uppercase;
+}
+
+.content-value {
+  font-size: 14px;
+  line-height: 21px;
+  color: #4A4A4A;
+  margin-bottom: 10px;
+}
+
+.ticket-list-more-btn {
+  height: 50px;
+  width: 100%;
+}
