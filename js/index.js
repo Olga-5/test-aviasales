@@ -1,4 +1,4 @@
-import { state, getSearchId, getTickets } from './actions.js';
+import { state, getSearchId, getTickets, getFilteredTickets } from './actions.js';
 import { numberWithSpaces, getTimeFromMins, getFlightTime } from './functions.js';
 
 const renderTitleStops = stops => {
@@ -69,4 +69,14 @@ loadMoreBtn.addEventListener('click', () => {
   if (sliceNumber >= tickets.length) {
     loadMoreBtn.style.display = 'none';
   }
+});
+
+const form = document.querySelector('.form-filters');
+
+Array.from(form.elements).forEach(element => {
+  element.addEventListener('input', e => {
+    const filteredTickets = getFilteredTickets(e, form);
+    renderTicketList(filteredTickets.slice(0, state.numberOfRecords));
+    state.currentNumberOfRecords = state.numberOfRecords;
+  });
 });
