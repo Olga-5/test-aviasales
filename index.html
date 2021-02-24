@@ -8,7 +8,33 @@
 </head>
 <body>
   <div class="container">
-    <div class="column left-column"></div>
+    <div class="column left-column">
+      <form class="form-filters">
+        <div class="form-group">
+          <div class="form-group-title">Количество пересадок</div>
+          <label class="field-checkbox">
+            <input class="field-checkbox-input" type="checkbox" value="all" checked>
+            <span class="field-checkbox-label">Все</span>
+          </label>
+          <label class="field-checkbox">
+            <input class="field-checkbox-input" type="checkbox" value="0">
+            <span class="field-checkbox-label">Без пересадок</span>
+          </label>
+          <label class="field-checkbox">
+            <input class="field-checkbox-input" type="checkbox" value="1">
+            <span class="field-checkbox-label">1 пересадка</span>
+          </label>
+          <label class="field-checkbox">
+            <input class="field-checkbox-input" type="checkbox" value="2">
+            <span class="field-checkbox-label">2 пересадки</span>
+          </label>
+          <label class="field-checkbox">
+            <input class="field-checkbox-input" type="checkbox" value="3">
+            <span class="field-checkbox-label">3 пересадки</span>
+          </label>
+        </div>
+      </form>
+    </div>
     <div class="column right-column">
       <ul class="ticket-list"></ul>
       <button class="btn ticket-list-more-btn">Показать еще 5 билетов!</button>
