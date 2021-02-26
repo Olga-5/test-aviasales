@@ -48,15 +48,12 @@ const renderTicketList = list => {
 };
 
 document.addEventListener('DOMContentLoaded', async () => {
-  try {
+  if (!localStorage.searchId) {
     await getSearchId();
-    await getTickets();
-    renderTicketList(state.tickets.slice(0, state.numberOfRecords));
-    state.currentNumberOfRecords = state.numberOfRecords;
-  } catch (err) {
-    // eslint-disable-next-line no-console
-    console.error(err);
   }
+  await getTickets();
+  renderTicketList(state.tickets.slice(0, state.numberOfRecords));
+  state.currentNumberOfRecords = state.numberOfRecords;
 });
 
 const loadMoreBtn = document.querySelector('.ticket-list-more-btn');

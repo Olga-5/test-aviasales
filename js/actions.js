@@ -1,10 +1,8 @@
-/* eslint-disable no-param-reassign */
-/* eslint-disable no-return-assign */
+/* eslint-disable no-console */
 import { createPath } from './functions.js';
 
 export const state = {
   url: 'https://front-test.beta.aviasales.ru',
-  searchId: '',
   tickets: [],
   initialTickets: [],
   numberOfRecords: 5,
@@ -18,16 +16,25 @@ export const state = {
 };
 
 export const getSearchId = async () => {
-  const res = await fetch(createPath(state.url, 'search'));
-  const result = await res.json();
-  state.searchId = result.searchId;
+  try {
+    const res = await fetch(createPath(state.url, 'search'));
+    const result = await res.json();
+    localStorage.setItem('searchId', result.searchId);
+  } catch (err) {
+    console.error(err);
+  }
 };
 
 export const getTickets = async () => {
-  const res = await fetch(createPath(state.url, 'tickets', { searchId: state.searchId }));
-  const result = await res.json();
-  state.tickets = result.tickets;
-  state.initialTickets = result.tickets;
+  try {
+    const { searchId } = localStorage;
+    const res = await fetch(createPath(state.url, 'tickets', { searchId }));
+    const result = await res.json();
+    state.initialTickets = result.tickets;
+    state.tickets = result.tickets;
+  } catch (err) {
+    console.error(err);
+  }
 };
 
 export const getFilteredTickets = list => {
