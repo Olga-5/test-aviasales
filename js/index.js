@@ -1,4 +1,5 @@
-import { state, getSearchId, getTickets, getFilteredTickets } from './actions.js';
+/* eslint-disable no-shadow */
+import { state, getSearchId, getTickets, getFilteredTickets, getSortedTickets } from './actions.js';
 import { numberWithSpaces, getTimeFromMins, getFlightTime } from './functions.js';
 
 const renderTitleStops = stops => {
@@ -75,8 +76,63 @@ const form = document.querySelector('.form-filters');
 
 Array.from(form.elements).forEach(element => {
   element.addEventListener('input', e => {
-    const filteredTickets = getFilteredTickets(e, form);
+    const { value, checked } = e.target;
+    const { initialTickets, filters } = state;
+    const filterByAll = document.getElementById('all');
+
+    state.filters[value] = checked;
+
+    if (value !== 'all') {
+      filterByAll.checked = false;
+      state.filters.all = false;
+    }
+
+    const selectedFilters = Object.keys(filters).filter(key => filters[key]);
+    state.selectedFilters = selectedFilters;
+
+    if (selectedFilters.includes('all')) {
+      Array.from(form.elements)
+        .slice(1)
+        .forEach(element => {
+          // eslint-disable-next-line no-param-reassign
+          if (element.checked) element.checked = false;
+        });
+      selectedFilters.forEach(item => {
+        if (item === 'all') return;
+        state.filters[item] = false;
+      });
+    }
+
+    const filteredTickets = getFilteredTickets(getSortedTickets(initialTickets));
     renderTicketList(filteredTickets.slice(0, state.numberOfRecords));
+    state.currentNumberOfRecords = state.numberOfRecords;
+  });
+});
+
+const sortItems = document.querySelectorAll('.sort-item');
+
+sortItems.forEach(sortItem => {
+  sortItem.addEventListener('click', e => {
+    const { target } = e;
+    const { initialTickets } = state;
+
+    const list = target.closest('.sort-list');
+
+    if (target.classList.contains('active')) {
+      target.classList.remove('active');
+      state.sort[target.id] = false;
+    } else {
+      const activeItem = list.querySelector('.active');
+      if (activeItem) {
+        activeItem.classList.remove('active');
+        state.sort[activeItem.id] = false;
+      }
+      target.classList.add('active');
+      state.sort[target.id] = true;
+    }
+
+    const sortedTickets = getSortedTickets(getFilteredTickets(initialTickets));
+    renderTicketList(sortedTickets.slice(0, state.numberOfRecords));
     state.currentNumberOfRecords = state.numberOfRecords;
   });
 });

@@ -16,6 +16,10 @@ img {
   height: 100%;
 }
 
+ul {
+  list-style: none;
+}
+
 body {
   min-width: 960px;
   background-color: #F3F7FA;
@@ -190,4 +194,45 @@ body {
 
 .field-checkbox-input:focus + .field-checkbox-label::before {
   border-color: #2196F3;
+}
+
+.sort-list {
+  padding: 0;
+  margin: 0;
+}
+
+.sort {
+  background-color: #fff;
+  border: 1px solid #DFE5EC;
+  border-radius: 5px;
+  margin-bottom: 20px;
+}
+
+.sort-list {
+  display: flex;
+}
+
+.sort-item {
+  flex: 1 1 0px;
+  font-size: 12px;
+  line-height: 20px;
+  text-transform: uppercase;
+  padding: 15px 0px;
+  text-align: center;
+  border-right: 1px solid #DFE5EC;
+  cursor: pointer;
+}
+
+.sort-item:last-child {
+  border-right: none;
+  border-radius: 0 4px 4px 0;
+}
+
+.sort-item:first-child {
+  border-radius: 4px 0 0 4px;
+}
+
+.active {
+  background: #2196F3;
+  color: #fff;
 }
